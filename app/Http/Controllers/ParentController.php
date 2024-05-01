@@ -2,32 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parents;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ParentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $parents = Parents::all();
+        return Inertia::render("parents/Index", compact("parents"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'father_name' => ['required','string'],
+            'mother_name' => ['required','string'],
+            'father_id' => ['required','string', 'image|file'],
+            'mother_id' => ['required','string', 'image|file'],
+            'wedding_act' => ['required','string', 'image|file'],
+        ]);
+
+        $parents = Parents::create($request->all());
     }
 
     /**
