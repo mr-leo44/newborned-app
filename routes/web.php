@@ -26,9 +26,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard')->name('dashboard');
     });
-    Route::resource('parents', ParentController::class)->except(['show','edit','create']);
-    Route::resource('childs', ChildController::class)->except(['show','edit','create']);
-    Route::resource('records', RecordController::class)->except(['show','edit','create']);
+    Route::resource('parents', ParentController::class);
+    Route::resource('childs', ChildController::class);
+    Route::resource('records', RecordController::class);
 });
 
 
