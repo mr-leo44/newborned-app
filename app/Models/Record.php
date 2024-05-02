@@ -4,20 +4,20 @@ namespace App\Models;
 
 use App\Models\Child;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Record extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'child_id',
         'is_delivered',
-        'babies_id',
     ];
 
-    public function childs(): HasMany
+    public function childs(): BelongsTo
     {
-        return $this->hasMany(Child::class);
+        return $this->belongsTo(Child::class);
     }
 }

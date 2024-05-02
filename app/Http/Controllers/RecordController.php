@@ -2,63 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Models\Record;
+use App\Models\Child;
 use Illuminate\Http\Request;
+use App\Http\Resources\RecordResource;
+use Illuminate\Support\Facades\Redirect;
 
 class RecordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $records = RecordResource::collection(Record::with('childs')->get());
+        return Inertia::render("Record/Index", compact("records"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create() 
     {
-        //
+        $childs = Child::all();
+        return Inertia::render("Record/Create", compact('childs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'is_delivery' => ['required', 'boolean'],
+            'child_id' => ['required']
+        ]);
+
+        Record::create([
+            'is_delivery' => $request->is_delivery,
+            'chil_id' => $request->chil_id,
+        ]);
+
+        return Redirect::route('records.index')->with('success','La demande de l\'acte a été un succès');
+   }
+
+    public function edit(Record $record)
+    {
+        $childs = Child::all();
+        return Inertia::render("Record/Edit", compact("record", "childs"));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, Record $record)
     {
-        //
+        $request->validate([
+            'is_delivery' => ['required', 'boolean'],
+            'child_id' => ['required']
+        ]);
+
+        $record->update([
+            'is_delivery' => $request->is_delivery,
+            'child_id' => $request->child_id,
+        ]);
+        return Redirect::route('records.index')->with('success','La demande de l\'acte a été mise à jour avec succès');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    
+    public function destroy(Record $record)
     {
-        //
-    }
+        $record->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        return Redirect::route('record.index')->with('success','La demande l\acte a été supprimé avec succès');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
+ 
