@@ -24,11 +24,12 @@ Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard')->name('dashboard');
-    });
-    Route::resource('parents', ParentController::class)->except('show');
-    Route::resource('childs', ChildController::class)->except('show');
-    Route::resource('records', RecordController::class)->except('show');
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::resource('/parents', ParentController::class)->except('show');
+    Route::resource('/childs', ChildController::class)->except('show');
+    Route::resource('/records', RecordController::class)->except('show');
 });
 
 

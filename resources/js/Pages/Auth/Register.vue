@@ -11,6 +11,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    gender: '',
 });
 
 const submit = () => {
@@ -22,11 +23,11 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="S'inscrire" />
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Nom" />
 
                 <TextInput
                     id="name"
@@ -57,7 +58,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Mot de passe" />
 
                 <TextInput
                     id="password"
@@ -72,7 +73,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <InputLabel for="password_confirmation" value="Confirmer mot de passe" />
 
                 <TextInput
                     id="password_confirmation"
@@ -80,10 +81,21 @@ const submit = () => {
                     class="mt-1 block w-full"
                     v-model="form.password_confirmation"
                     required
-                    autocomplete="new-password"
+                    autocomplete="mot de passe"
                 />
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
+            </div>
+            <div class="mt-4">
+                <InputLabel for="gender" value="Votre Sexe" />
+
+                <select id="gender" v-model="form.gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Veuillez choisir</option>
+                    <option value="F">Femme</option>
+                    <option value="H">Homme</option>
+                </select>
+
+                <InputError class="mt-2" :message="form.errors.gender" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -91,11 +103,11 @@ const submit = () => {
                     :href="route('login')"
                     class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                    Already registered?
+                    Déjà enregistré?
                 </Link>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
+                    S'inscrire
                 </PrimaryButton>
             </div>
         </form>
