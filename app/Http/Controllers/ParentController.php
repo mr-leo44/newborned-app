@@ -73,28 +73,25 @@ class ParentController extends Controller
         $request->validate([
             'father_name' => ['required','min:3'],
             'mother_name' => ['required','min:3'],
-            'father_id' => ['required', 'image|file'],
-            'mother_id' => ['required', 'image|file'],
-            'wedding_act' => ['required', 'image|file'],
         ]);
 
         
         if($request->hasFile('father_id')) {
-            Storage::delete($parents->father_id);
+            Storage::delete($parent->father_id);
             $father_id = $request->file('father_id')->store('parents/ids');
         }
 
         if($request->hasFile('mother_id')) {
-            Storage::delete($parents->mother_id);
+            Storage::delete($parent->mother_id);
             $mother_id = $request->file('mother_id')->store('parents/ids');
         }
 
         if($request->hasFile('wedding_act')) {
-            Storage::delete($parents->wedding_act);
+            Storage::delete($parent->wedding_act);
             $wedding_act = $request->file('wedding_act')->store('parents/acts');
         }
 
-        $parents->update([
+        $parent->update([
             'father_name' => $request->father_name,
             'mother_name' => $request->mother_name,
             'father_id' => $father_id,

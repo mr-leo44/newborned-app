@@ -5,7 +5,6 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import Inertia from "@inertiajs/vue3";
 
 const props = defineProps({
     parent: Object
@@ -19,7 +18,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    Inertia.post(`/parents/${props.parent.id}`, {
+    form.put(`/parents/${props.parent.id}`, {
     _method: "put",
     father_name: form.father_name,
     mother_name: form.mother_name,
@@ -35,7 +34,6 @@ const submit = () => {
       <template #header>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Modifier un Parent</h2>
       </template>
-      {{ props.parents }}
       <div class="py-12">
       <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
         <form class="p-4" @submit.prevent="submit">
