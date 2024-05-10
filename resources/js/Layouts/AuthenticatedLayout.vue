@@ -196,34 +196,31 @@ const showingNavigationDropdown = ref(false);
               Demandes
             </ResponsiveNavLink>
           </div>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-          <div class="px-4">
-            <div class="font-medium text-base text-gray-800">
-              {{ $page.props.auth.user.name }}
+          <!-- Responsive Settings Options -->
+          <div class="pt-4 pb-1 border-t border-gray-200">
+            <div class="px-4">
+              <div class="font-medium text-base text-gray-800">
+                {{ $page.props.auth.user.name }}
+              </div>
+              <div class="font-medium text-sm text-gray-500">
+                {{ $page.props.auth.user.email }}
+              </div>
             </div>
-            <div class="font-medium text-sm text-gray-500">
-              {{ $page.props.auth.user.email }}
+
+            <div class="mt-3 space-y-1">
+              <ResponsiveNavLink
+                :href="route('logout')"
+                method="post"
+                as="button"
+              >
+                Log Out
+              </ResponsiveNavLink>
             </div>
           </div>
+      </div>
 
-          <div class="mt-3 space-y-1">
-            <ResponsiveNavLink
-              :href="route('logout')"
-              method="post"
-              as="button"
-            >
-              Log Out
-            </ResponsiveNavLink>
-          </div>
-        </div>
       </nav>
-    </div>
-
-      <!-- Page Heading -->
-    <header class="bg-white shadow" v-if="$slots.header">
+      <header class="bg-white shadow" v-if="$slots.header">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <slot name="header" />
       </div>
@@ -233,5 +230,9 @@ const showingNavigationDropdown = ref(false);
     <main>
       <slot />
     </main>
+    </div>
+
+      <!-- Page Heading -->
+    
   </div>
 </template>

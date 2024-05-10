@@ -14,7 +14,7 @@ class ParentController extends Controller
 
     public function index()
     {
-        $parents = ParentResource::collection(Parents::all());
+        $parents = ParentResource::collection(Parents::latest()->get());
         return Inertia::render("Parents/Index", compact("parents"));
     }
 
@@ -28,11 +28,10 @@ class ParentController extends Controller
         $request->validate([
             'father_name' => ['required','min:3'],
             'mother_name' => ['required','min:3'],
-            'father_id' => ['required', 'image|file'],
-            'mother_id' => ['required', 'image|file'],
-            'wedding_act' => ['required', 'image|file'],
+            'father_id' => ['required', 'image','file'],
+            'mother_id' => ['required', 'image','file'],
+            'wedding_act' => ['required', 'image','file'],
         ]);
-
         $father_id = "";
         $mother_id = "";
         $wedding_act = "";
@@ -59,16 +58,17 @@ class ParentController extends Controller
 
         return Redirect::route('parents.index')->with('success','Parents mis à jour avec succès');
     }
-    public function edit(Parents $parents)
+
+    public function edit(Parents $parent)
     {
-        return Inertia::render("Parents/Edit", compact("parents"));
+        return Inertia::render("Parents/Edit", compact("parent"));
     }
 
-    public function update(Request $request, Parents $parents)
+    public function update(Request $request, Parents $parent)
     {
-        $father_id = $parents->father_id;
-        $mother_id = $parents->mother_id;
-        $wedding_act = $parents->wedding_act;
+        $father_id = $parent->father_id;
+        $mother_id = $parent->mother_id;
+        $wedding_act = $parent->wedding_act;
 
         $request->validate([
             'father_name' => ['required','min:3'],
