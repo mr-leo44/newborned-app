@@ -21,7 +21,8 @@ class ChildController extends Controller
 
     public function create() 
     {
-        return Inertia::render("Child/Create");
+        $parents = Parents::all();
+        return Inertia::render("Child/Create", compact("parents"));
     }
 
     public function store(Request $request)
@@ -30,29 +31,26 @@ class ChildController extends Controller
             'firstname' => ['required','min:3'],
             'middlename' => ['required','min:3'],
             'lastname' => ['required', 'min:3'],
-            'birthday' => ['required', 'min:3'],
+            'birthday' => ['required', 'date'],
             'city' => ['required'],
-            'hospital_act' => ['required', 'image|file'],
+            'hospital_act' => ['required', 'image', 'file'],
             'parents_id' => ['required'],
         ]);
 
-       
-        if($request->hasFile('mother_id')) {
+        $hospital_act = "";
+        if($request->hasFile('hospital_act')) {
             $hospital_act = $request->file('hospital_act')->store('childs');
             Child::create([
-                'firstname' => $request->firstname,
-                'middlename' => $request->middlename,
-                'lastname' => $request->lastname,
-                'birthday' => $request->birthday,
-                'city' => $request->city,
+                'firstname' => request('firstname'),
+                'middlename' => request('middlename'),
+                'lastname' => request('lastname'),
+                'birthday' => request('birthday'),
+                'city' => request('city'),
                 'hospital_act' => $hospital_act,
-                'parents_id' => $request->parents_id,
+                'parents_id' => request('parents_id'),
             ]);
-
-            return Redirect::route('childs.index')->with('success','Enfant créé à jour avec succès');
         }
-
-        return Redirect::back();
+        return Redirect::route('childs.index')->with('success','Enfant créé à jour avec succès');
     }
 
     public function edit(Child $child)
@@ -65,30 +63,30 @@ class ChildController extends Controller
     {
         $hospital_act = $child->hospital_act;
         $request->validate([
-            'firstname' => ['required','min:3'],
-            'middlename' => ['required','min:3'],
-            'lastname' => ['required', 'min:3'],
-            'birthday' => ['required', 'min:3'],
-            'city' => ['required'],
-            'hospital_act' => ['required', 'image|file'],
-            'parents_id' => ['required'],
+            'firstname' => ['min:3'],
+            'middlename' => ['min:3'],
+            'lastname' => ['min:3'],
+            'birthday' => ['date'],
+            'city' => ['min:2'],
+            'hospital_act' => ['image','file'],
         ]);
 
         if($request->hasFile('hospital_act')){
             Storage::delete($child->hospital_act);
             $hospital_act = $request->file('hospital_act')->store('childs');
         }
-
         $child->update([
             'firstname' => $request->firstname,
             'middlename' => $request->middlename,
             'lastname' => $request->lastname,
             'birthday' => $request->birthday,
             'city' => $request->city,
-            'hospital_act' => $hospital_act,
+            'hospital_act' => $hospital_act ?? $child->hospital_act,
             'parents_id' => $request->parents_id,
         ]);
+        
         return Redirect::route('childs.index')->with('success','Enfant mis à jour avec succès');
+
     }
 
     
@@ -97,7 +95,7 @@ class ChildController extends Controller
         Storage::delete($child->hospital_act);
         $child->delete();
 
-        return Redirect::route('child.index')->with('success','Enfant supprimé avec succès');
+        return Redirect::route('childs.index')->with('success','Enfant supprimé avec succès');
 
     }
 }

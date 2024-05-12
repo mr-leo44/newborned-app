@@ -15,17 +15,11 @@ const form = useForm({
   father_id: null,
   mother_id: null,
   wedding_act: null,
+  _method: "PUT",
 });
 
 const submit = () => {
-    form.put(`/parents/${props.parent.id}`, {
-    _method: "put",
-    father_name: form.father_name,
-    mother_name: form.mother_name,
-    father_id: form.father_id,
-    mother_id: form.mother_id,
-    wedding_act: form.wedding_act,
-  });
+    form.post(route('parents.update',props.parent.id));
 };
 </script>
 <template>
@@ -44,23 +38,22 @@ const submit = () => {
               type="text"
               class="mt-1 block w-full"
               v-model="form.father_name"
-              autofocus
             />
             <InputError class="mt-2" :message="form.errors.father_name" />
           </div>
           <div class="mt-2">
-            <InputLabel for="mother_name" value="Nom du Père" />
+            <InputLabel for="mother_name" value="Nom de la Mère" />
             <TextInput
               id="mother_name"
               type="text"
               class="mt-1 block w-full"
               v-model="form.mother_name"
-              autofocus
+              
             />
             <InputError class="mt-2" :message="form.errors.mother_name" />
           </div>
           <div class="mt-2">
-            <InputLabel for="father_id" value="Identité du père" />
+            <InputLabel for="father_id" value="Identité du Père" />
             <TextInput
               id="father_id"
               type="file"
@@ -95,7 +88,7 @@ const submit = () => {
               :class="{ 'opacity-25': form.processing }"
               :disabled="form.processing"
             >
-              Enregistrer
+              Valider
             </PrimaryButton>
           </div>
         </form>

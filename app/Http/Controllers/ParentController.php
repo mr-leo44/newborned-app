@@ -71,22 +71,25 @@ class ParentController extends Controller
         $wedding_act = $parent->wedding_act;
 
         $request->validate([
-            'father_name' => ['required','min:3'],
-            'mother_name' => ['required','min:3'],
+            'father_name' => ['min:3'],
+            'mother_name' => ['min:3'],
         ]);
 
         
         if($request->hasFile('father_id')) {
+            $request->validate(['father_id' => ['file', 'image']]);
             Storage::delete($parent->father_id);
             $father_id = $request->file('father_id')->store('parents/ids');
         }
 
         if($request->hasFile('mother_id')) {
+            $request->validate(['mother_id' => ['file', 'image']]);
             Storage::delete($parent->mother_id);
             $mother_id = $request->file('mother_id')->store('parents/ids');
         }
 
         if($request->hasFile('wedding_act')) {
+            $request->validate(['wedding_act' => ['file', 'image']]);
             Storage::delete($parent->wedding_act);
             $wedding_act = $request->file('wedding_act')->store('parents/acts');
         }
@@ -103,10 +106,10 @@ class ParentController extends Controller
     }
 
     
-    public function destroy(Parents $parents)
+    public function destroy(Parents $parent)
     {
-        Storage::delete($parents->wedding_act, $parents->mother_id, $parents->father_id);
-        $parents->delete();
+        Storage::delete([$parent->wedding_act, $parent->mother_id, $parent->father_id]);
+        $parent->delete();
 
         return Redirect::route('parents.index')->with('success','Parents supprimés avec succès');
 

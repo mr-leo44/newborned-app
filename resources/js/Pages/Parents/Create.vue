@@ -39,7 +39,7 @@ const submit = () => {
             <InputError class="mt-2" :message="form.errors.father_name" />
           </div>
           <div class="mt-2">
-            <InputLabel for="mother_name" value="Nom du Père" />
+            <InputLabel for="mother_name" value="Nom de la Mère" />
             <TextInput
               id="mother_name"
               type="text"
