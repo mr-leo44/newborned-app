@@ -19,6 +19,8 @@
     },
     "dependencies": {
         "flowbite": "^2.3.0",
-        "flowbite-datepicker": "^1.2.6"
+        "flowbite-datepicker": "^1.2.6",
+        "lodash": "^4.17.21",
+        "vue-multiselect": "^3.0.0"
     }
 }

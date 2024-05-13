@@ -16,7 +16,7 @@ class Record extends Model
         'is_delivered',
     ];
 
-    public function childs(): BelongsTo
+    public function child(): BelongsTo
     {
         return $this->belongsTo(Child::class);
     }

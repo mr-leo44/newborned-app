@@ -7,6 +7,7 @@ use App\Models\Record;
 use App\Models\Child;
 use Illuminate\Http\Request;
 use App\Http\Resources\RecordResource;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
 class RecordController extends Controller
@@ -14,18 +15,25 @@ class RecordController extends Controller
 
     public function index()
     {
-        $records = RecordResource::collection(Record::with('childs')->get());
-        return Inertia::render("Record/Index", compact("records"));
+        $records = RecordResource::collection(Record::with('child')->get());
+        return Inertia::render("Records/Index", compact("records"));
     }
 
     public function create() 
     {
-        $childs = Child::all();
-        return Inertia::render("Record/Create", compact('childs'));
+        return Inertia::render("Records/Create", [
+            'childs' => Record::when(request('term'), function ($query, $term){
+                $query->where('firstname', 'like', "%$term%");
+            })->limit(10)->get()
+        ]);
     }
 
     public function store(Request $request)
     {
+        dd($request);
+        $year_now = Carbon::now()->year;
+        $order_number = Record::count() === 0 ? 1 : Record::get()->last()->id + 1;
+        $ref_number = "CS-". $year_now ."-" .$order_number; 
         $request->validate([
             'is_delivery' => ['required', 'boolean'],
             'child_id' => ['required']
@@ -33,16 +41,17 @@ class RecordController extends Controller
 
         Record::create([
             'is_delivery' => $request->is_delivery,
-            'chil_id' => $request->chil_id,
+            'ref' => $ref_number,
+            'child_id' => $request->child_id,
         ]);
 
-        return Redirect::route('records.index')->with('success','La demande de l\'acte a été un succès');
+        return Redirect::route('records.index')->with('success','L\'enregistrement a été un succès');
    }
 
     public function edit(Record $record)
     {
         $childs = Child::all();
-        return Inertia::render("Record/Edit", compact("record", "childs"));
+        return Inertia::render("Records/Edit", compact("record", "childs"));
     }
 
     public function update(Request $request, Record $record)
@@ -56,7 +65,7 @@ class RecordController extends Controller
             'is_delivery' => $request->is_delivery,
             'child_id' => $request->child_id,
         ]);
-        return Redirect::route('records.index')->with('success','La demande de l\'acte a été mise à jour avec succès');
+        return Redirect::route('records.index')->with('success','L\'enregistrement de l\'enfant a été mise à jour avec succès');
     }
 
     
@@ -64,7 +73,7 @@ class RecordController extends Controller
     {
         $record->delete();
 
-        return Redirect::route('record.index')->with('success','La demande l\acte a été supprimé avec succès');
+        return Redirect::route('record.index')->with('success','L\'enregistrement de l\'enfant a été supprimé avec succès');
 
     }
 }
