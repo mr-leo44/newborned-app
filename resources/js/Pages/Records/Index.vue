@@ -12,7 +12,7 @@ defineProps({
       <template #header>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Enregistrements</h2>
       </template>
-  
+
       <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="flex justify-end m-2 p-2">
@@ -56,29 +56,21 @@ defineProps({
                 >
                   <td class="py-4px-6">{{ record.ref }}</td>
                   <td class="py-4 px-6">{{ record.child.name }}</td>
-                  <td class="py-4 px-6"><span v-if="record.is_delivered === false">Non delivré</span><span v-else>Delivré</span></td>
+                  <td class="py-4 px-6"><span v-if="record.is_delivered">Delivré</span><span v-else>Non delivré</span></td>
                   <td class="py-4 px-6">
                     <Link
                       :href="route('records.edit', record.id)"
                       class="font-medium text-blue-500 hover:text-blue-700 mr-2"
-                      >Edit</Link
-                    >
-                    <Link
-                      :href="route('records.destroy', record.id)"
-                      method="delete"
-                      as="button"
-                      type="button"
-                      class="font-medium text-red-500 hover:text-red-700 mr-2"
-                      >Delete</Link
+                      :class="{'invisible' : record.is_delivered}"
+                      >Modifier Statut</Link
                     >
                   </td>
                 </tr>
               </tbody>
-              
+
             </table>
           </div>
         </div>
       </div>
     </AuthenticatedLayout>
   </template>
-  

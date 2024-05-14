@@ -18,7 +18,7 @@ class RecordResource extends JsonResource
         return [
             'id' => $this->id,
             'ref' => $this->ref,
-            'is_delivery' => $this->is_delivery,
+            'is_delivered' => $this->is_delivered,
             'child' => new ChildResource($this->whenLoaded('child')),
         ];
     }

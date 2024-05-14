@@ -14,6 +14,7 @@ class Record extends Model
     protected $fillable = [
         'child_id',
         'is_delivered',
+        'ref',
     ];
 
     public function child(): BelongsTo

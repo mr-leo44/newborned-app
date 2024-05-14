@@ -14,7 +14,6 @@ defineProps({
 
 
 const form = useForm({
-  child_id: "",
   is_delivered: false,
   selectedChild : null
 });
@@ -24,8 +23,7 @@ const childSelect = (child) => {
 }
 
 const submit = () => {
-  form.child_id = form.selectedChild.id
-  form.post(route('records.store'))
+   form.post(route('records.store'))
 };
 
 </script>
@@ -60,4 +58,3 @@ const submit = () => {
     </div>
     </AuthenticatedLayout>
   </template>
-  

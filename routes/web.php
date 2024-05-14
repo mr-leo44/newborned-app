@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('/parents', ParentController::class)->except('show');
     Route::resource('/childs', ChildController::class)->except('show');
-    Route::resource('/records', RecordController::class)->except('show');
+    Route::resource('/records', RecordController::class)->except(['show', 'destroy']);
 });
 
 

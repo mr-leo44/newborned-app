@@ -34,7 +34,6 @@ const submit = () => {
               type="text"
               class="mt-1 block w-full"
               v-model="form.father_name"
-              autofocus
             />
             <InputError class="mt-2" :message="form.errors.father_name" />
           </div>
@@ -45,7 +44,6 @@ const submit = () => {
               type="text"
               class="mt-1 block w-full"
               v-model="form.mother_name"
-              autofocus
             />
             <InputError class="mt-2" :message="form.errors.mother_name" />
           </div>
@@ -93,4 +91,3 @@ const submit = () => {
     </div>
     </AuthenticatedLayout>
   </template>
-  
