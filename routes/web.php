@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ChildController;
+use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\ProfileController;
@@ -23,9 +24,7 @@ use App\Http\Controllers\WelcomeController;
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashBoardController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('/parents', ParentController::class)->except('show');
     Route::resource('/childs', ChildController::class)->except('show');
