@@ -17,9 +17,7 @@ class ChildResource extends JsonResource
     {
         return [
             "id"=> $this->id,
-            'firstname' => $this->firstname,
-            'middlename' => $this->middlename,
-            'lastname' => $this->lastname,
+            'name' => $this->name,
             'birthday' => $this->birthday,
             'city' => $this->city,
             'hospital_act' => $this->hospital_act,

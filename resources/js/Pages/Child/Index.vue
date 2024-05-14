@@ -59,7 +59,7 @@ defineProps({
                       px-6
                     "
                   >
-                    {{ child.firstname }} {{ child.lastname }} {{ child.middlename }}
+                    {{ child.name }}
                   </td>
                   <td class="py-4 px-6">{{ child.city }}</td>
                   <td class="py-4 px-6">{{ child.birthday }}</td>

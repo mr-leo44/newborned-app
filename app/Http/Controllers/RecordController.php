@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Record;
 use App\Models\Child;
 use Illuminate\Http\Request;
+use App\Http\Resources\ChildResource;
 use App\Http\Resources\RecordResource;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
@@ -22,15 +23,12 @@ class RecordController extends Controller
     public function create() 
     {
         return Inertia::render("Records/Create", [
-            'childs' => Record::when(request('term'), function ($query, $term){
-                $query->where('firstname', 'like', "%$term%");
-            })->limit(10)->get()
+            'childs' => ChildResource::collection(Child::latest()->get())
         ]);
     }
 
     public function store(Request $request)
     {
-        dd($request);
         $year_now = Carbon::now()->year;
         $order_number = Record::count() === 0 ? 1 : Record::get()->last()->id + 1;
         $ref_number = "CS-". $year_now ."-" .$order_number; 
@@ -40,9 +38,9 @@ class RecordController extends Controller
         ]);
 
         Record::create([
-            'is_delivery' => $request->is_delivery,
+            'is_delivery' => request('is_delivery'),
             'ref' => $ref_number,
-            'child_id' => $request->child_id,
+            'child_id' => request('child_id'),
         ]);
 
         return Redirect::route('records.index')->with('success','L\'enregistrement a été un succès');

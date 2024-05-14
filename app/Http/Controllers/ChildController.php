@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class ChildController extends Controller
 {
-
     public function index()
     {
         $children = ChildResource::collection(Child::with('parents')->get());
@@ -28,9 +27,7 @@ class ChildController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstname' => ['required','min:3'],
-            'middlename' => ['required','min:3'],
-            'lastname' => ['required', 'min:3'],
+            'name' => ['required','min:5'],
             'birthday' => ['required', 'date'],
             'city' => ['required'],
             'hospital_act' => ['required', 'image', 'file'],
@@ -41,9 +38,7 @@ class ChildController extends Controller
         if($request->hasFile('hospital_act')) {
             $hospital_act = $request->file('hospital_act')->store('childs');
             Child::create([
-                'firstname' => request('firstname'),
-                'middlename' => request('middlename'),
-                'lastname' => request('lastname'),
+                'name' => request('name'),
                 'birthday' => request('birthday'),
                 'city' => request('city'),
                 'hospital_act' => $hospital_act,
@@ -63,9 +58,7 @@ class ChildController extends Controller
     {
         $hospital_act = $child->hospital_act;
         $request->validate([
-            'firstname' => ['min:3'],
-            'middlename' => ['min:3'],
-            'lastname' => ['min:3'],
+            'name' => ['min:5'],
             'birthday' => ['date'],
             'city' => ['min:2'],
             'hospital_act' => ['image','file'],
@@ -76,9 +69,7 @@ class ChildController extends Controller
             $hospital_act = $request->file('hospital_act')->store('childs');
         }
         $child->update([
-            'firstname' => $request->firstname,
-            'middlename' => $request->middlename,
-            'lastname' => $request->lastname,
+            'name' => $request->name,
             'birthday' => $request->birthday,
             'city' => $request->city,
             'hospital_act' => $hospital_act ?? $child->hospital_act,

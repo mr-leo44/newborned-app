@@ -13,9 +13,7 @@ defineProps({
 })
 
 const form = useForm({
-  firstname: "",
-  lastname: "",
-  middlename: "",
+  name: "",
   city: "",
   birthday: "",
   hospital_act: null,
@@ -36,40 +34,14 @@ const submit = () => {
       <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
         <form class="p-4" @submit.prevent="submit">
           <div>
-            <InputLabel for="firstname" value="Prenom de l'enfant" />
+            <InputLabel for="name" value="Nom de l'enfant" />
             <TextInput
-              id="firstname"
+              id="name"
               type="text"
               class="mt-1 block w-full"
-              v-model="form.firstname"
-              autofocus
+              v-model="form.name"
             />
-            <InputError class="mt-2" :message="form.errors.firstname" />
-            
-          </div>
-
-          <div class="mt-2">
-            <InputLabel for="lastname" value="Nom de l'enfant" />
-            <TextInput
-              id="lastname"
-              type="text"
-              class="mt-1 block w-full"
-              v-model="form.lastname"
-              autofocus
-            />
-            <InputError class="mt-2" :message="form.errors.lastname" />
-          </div>
-
-          <div class="mt-2">
-            <InputLabel for="middlename" value="Postnom de l'enfant" />
-            <TextInput
-              id="middlename"
-              type="text"
-              class="mt-1 block w-full"
-              v-model="form.middlename"
-              autofocus
-            />
-            <InputError class="mt-2" :message="form.errors.middlename" />
+            <InputError class="mt-2" :message="form.errors.name" />
           </div>
 
           <div class="mt-2">
@@ -79,10 +51,10 @@ const submit = () => {
               type="text"
               class="mt-1 block w-full"
               v-model="form.city"
-              autofocus
             />
             <InputError class="mt-2" :message="form.errors.city" />
           </div>
+
           <div class="mt-2">
             <InputLabel for="birthday" value="Date de Naissance" />
             <TextInput
@@ -93,7 +65,6 @@ const submit = () => {
               type="date"
               class="mt-1 block w-full"
               v-model="form.birthday"
-              autofocus
             />
             <InputError class="mt-2" :message="form.errors.birthday" />
           </div>

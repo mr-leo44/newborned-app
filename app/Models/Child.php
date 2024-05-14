@@ -11,9 +11,7 @@ class Child extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firstname',
-        'middlename',
-        'lastname',
+        'name',
         'birthday',
         'city',
         'hospital_act',

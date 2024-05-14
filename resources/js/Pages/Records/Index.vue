@@ -55,7 +55,7 @@ defineProps({
                   class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 >
                   <td class="py-4px-6">{{ record.ref }}</td>
-                  <td class="py-4 px-6">{{ record.child.firstname }}{{ record.child.lastname }} {{ record.child.middlename }}</td>
+                  <td class="py-4 px-6">{{ record.child.name }}</td>
                   <td class="py-4 px-6"><span v-if="record.is_delivered === false">Non delivré</span><span v-else>Delivré</span></td>
                   <td class="py-4 px-6">
                     <Link
