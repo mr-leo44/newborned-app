@@ -5,7 +5,6 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import Multiselect from 'vue-multiselect';
-import {throttle} from 'lodash';
 
 
 defineProps({
@@ -41,7 +40,7 @@ const submit = () => {
             <multiselect id="child" v-model="form.selectedChild" modelValue="form.selectedChild" :custom-label="childSelect" :options="childs.data" placeholder="Selectionnez l'enfant"
               label="name" track-by="id">
             </multiselect>
-            <InputError class="mt-2" :message="form.errors.father_name" />
+            <InputError class="mt-2" :message="form.errors.selectedChild" />
           </div>
 
           <div class="flex items-center justify-end mt-4">
