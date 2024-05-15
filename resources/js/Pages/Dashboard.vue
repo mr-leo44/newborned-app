@@ -183,7 +183,7 @@ defineProps({
             <div class="flex justify-between">
               <h3 class="text-3xl font-semibold">Rendez-vous</h3>
               <Link
-                :href="route('records.index')"
+                :href="route('appointments.create')"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Ajouter
