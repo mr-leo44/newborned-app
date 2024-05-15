@@ -53,7 +53,7 @@ const showingNavigationDropdown = ref(false);
                 </NavLink>
                 <NavLink
                   :href="route('appointments.index')"
-                  :active="route().current('records.index')"
+                  :active="route().current('appointments.index')"
                 >
                   Rendez-vous
                 </NavLink>
@@ -201,6 +201,12 @@ const showingNavigationDropdown = ref(false);
             >
               Demandes
             </ResponsiveNavLink>
+            <ResponsiveNavLink
+              :href="route('appointments.index')"
+              :active="route().current('appointments.index')"
+            >
+              Rendez-vous
+            </ResponsiveNavLink>
           </div>
           <!-- Responsive Settings Options -->
           <div class="pt-4 pb-1 border-t border-gray-200">
@@ -239,6 +245,6 @@ const showingNavigationDropdown = ref(false);
     </div>
 
       <!-- Page Heading -->
-    
+
   </div>
 </template>

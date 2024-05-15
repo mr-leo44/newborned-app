@@ -8,6 +8,7 @@ use App\Models\Child;
 use App\Models\Record;
 use App\Models\Parents;
 use App\Http\Resources\RecordResource;
+use App\Models\Appointment;
 
 class DashBoardController extends Controller
 {
@@ -17,6 +18,7 @@ class DashBoardController extends Controller
         $record_today = RecordResource::collection(Record::with('child')->whereDate('created_at', Carbon::today())->latest()->limit(5)->get());
         $parents_count = Parents::count();
         $childs_count = Child::count();
-        return Inertia::render("Dashboard", compact('record_today','undelivered_records', 'parents_count', 'childs_count'));
+        $appointments = Appointment::latest()->limit(5)->get();
+        return Inertia::render("Dashboard", compact('appointments','record_today','undelivered_records', 'parents_count', 'childs_count'));
     }
 }

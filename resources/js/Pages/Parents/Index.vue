@@ -12,7 +12,7 @@ defineProps({
       <template #header>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Parents</h2>
       </template>
-  
+
       <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="flex justify-end m-2 p-2">
@@ -47,7 +47,7 @@ defineProps({
                   <th scope="col" class="py-3 px-6"></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody v-if="parents.data">
                 <tr
                   v-for="parent in parents.data"
                   :key="parent.id"
@@ -79,11 +79,14 @@ defineProps({
                   </td>
                 </tr>
               </tbody>
-              
+              <tbody v-else>
+                <tr>
+                    <td scope="col" colspan="3" class="px-6 py-3 font-semibold">Pas de couples trouvés</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
       </div>
     </AuthenticatedLayout>
   </template>
-  

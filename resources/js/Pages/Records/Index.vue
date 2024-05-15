@@ -48,7 +48,7 @@ defineProps({
                   <th scope="col" class="py-3 px-6"></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody v-if="records.data">
                 <tr
                   v-for="record in records.data"
                   :key="record.id"
@@ -67,7 +67,11 @@ defineProps({
                   </td>
                 </tr>
               </tbody>
-
+              <tbody v-else>
+                <tr>
+                    <td scope="col" colspan="3" class="px-6 py-3 font-semibold">Pas d'enregistrements trouvés</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>

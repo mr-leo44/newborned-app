@@ -13,8 +13,8 @@ export default {
 
     theme: {
         fontFamily: {
-            primary: "Playfair Display",
-            body: "work Sans",
+            primary: "Montserrat",
+            body: "Open Sans",
         },
         container: {
             padding: {

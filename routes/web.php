@@ -25,7 +25,7 @@ Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashBoardController::class, 'dashboard'])->name('dashboard');
 
-    Route::resource('/appointments', AppointmentController::class);
+    Route::resource('/appointments', AppointmentController::class)->except('show');
     Route::resource('/parents', ParentController::class)->except('show');
     Route::resource('/childs', ChildController::class)->except('show');
     Route::resource('/records', RecordController::class)->except(['show', 'destroy']);
