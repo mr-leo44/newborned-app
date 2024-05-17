@@ -6,7 +6,8 @@ defineProps({
   undelivered_records: Number,
   parents_count: Number,
   childs_count: Number,
-  record_today: Array,
+  record_today: Object,
+  appointments: Array
 });
 </script>
 
@@ -94,7 +95,7 @@ defineProps({
               class="mb-2 text-lg lg:text-xl font-medium tracking-tight text-gray-900 dark:text-white"
             >
               {{ childs_count }} Enfant<span v-if="childs_count > 1">s</span>
-              inscrit<span v-if="parents_count > 1">s</span>
+              inscrit<span v-if="childs_count > 1">s</span>
             </h5>
             <Link
               :href="route('childs.create')"
@@ -176,7 +177,7 @@ defineProps({
                 </tbody>
                 <tbody v-else>
                 <tr>
-                    <td scope="col" colspan="3" class="px-6 py-3 font-semibold">Pas de couples trouvés</td>
+                    <td scope="col" colspan="3" class="px-6 py-3 font-semibold">Pas de demande Aujourd'hui</td>
                 </tr>
               </tbody>
               </table>
@@ -188,10 +189,10 @@ defineProps({
             <div class="flex justify-between">
               <h3 class="text-2xl font-medium">Rendez-vous</h3>
               <Link
-                :href="route('appointments.create')"
+                :href="route('appointments.index')"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Ajouter
+                Voir plus
                 <svg
                   class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                   aria-hidden="true"
@@ -218,22 +219,36 @@ defineProps({
                 >
                   <tr>
                     <th scope="col" class="py-3 px-6">N° Dossier</th>
-                    <th scope="col" class="py-3 px-6">Concerne</th>
                     <th scope="col" class="py-3 px-6">Date</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody v-if="appointments">
                   <tr
-                    v-for="record in record_today.data"
-                    :key="record.id"
+                    v-for="appointment in appointments"
+                    :key="appointment.id"
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <td class="py-4px-6">{{ record.ref }}</td>
-                    <td class="py-4 px-6">{{ record.child.name }}</td>
+                    <td class="py-4px-6"><Link
+                      :href="route('records.show', appointment.record.id)"
+                      class="hover:text-blue-700"
+                      >{{ appointment.record.ref }}</Link
+                    ></td>
+                    <td class="py-4 px-6"><span v-if="appointment.date">{{ appointment.date }}</span
+                      ><span v-else>Non programmé</span></td>
                     <td class="py-4 px-6">
-                      20-04-2024
+                      <Link
+                      :href="route('appointments.edit', appointment.id)"
+                      class="font-medium text-blue-500 hover:text-blue-700 mr-2"
+                      ><span v-if="appointment.date">Reprogrammer</span><span v-else>Programmer</span></Link
+                    >
                     </td>
                   </tr>
+                </tbody>
+                <tbody v-else>
+                <tr>
+                    <td scope="col" colspan="3" class="px-6 py-3 font-semibold">Pas de Rendez-vous non programé</td>
+                </tr>
                 </tbody>
               </table>
             </div>

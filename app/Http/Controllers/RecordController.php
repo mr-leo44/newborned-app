@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Record;
+use App\Models\Appointment;
 use App\Models\Child;
 use Illuminate\Http\Request;
 use App\Http\Resources\ChildResource;
@@ -19,7 +20,6 @@ class RecordController extends Controller
         $records = RecordResource::collection(Record::with('child')->latest()->get());
         return Inertia::render("Records/Index", compact("records"));
     }
-
     public function create()
     {
         return Inertia::render("Records/Create", [
@@ -32,10 +32,15 @@ class RecordController extends Controller
         $selectedChild = $request->selectedChild['id'];
         $order = Record::count() === 0 ? 1 : Record::get()->last()->id + 1;
         $ref = "CS-". Carbon::now()->year ."-{$order}";
-        Record::create([
+        $record = Record::create([
             'is_delivered' => $request->is_delivered,
             'ref' => $ref,
             'child_id' => $selectedChild,
+        ]);
+
+        
+        Appointment::create([
+            'record_id' => $record->id
         ]);
 
         return Redirect::route('records.index')->with('success','L\'enregistrement a été un succès');
@@ -49,7 +54,6 @@ class RecordController extends Controller
     public function update(Request $request, Record $record)
     {
         $status = $request->selected['index'];
-
         $record->update([
             'is_delivered' => $status,
         ]);

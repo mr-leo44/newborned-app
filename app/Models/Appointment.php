@@ -16,7 +16,7 @@ class Appointment extends Model
         "date"
     ];
 
-    public function records() : BelongsTo
+    public function record() : BelongsTo
     {
         return $this->belongsTo(Record::class);
     }

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdfor(Record::class);
-            $table->string('date');
+            $table->string('date')->nullable();
             $table->timestamps();
         });
     }

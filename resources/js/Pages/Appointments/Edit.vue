@@ -3,46 +3,44 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue"
 import { Head, useForm } from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import Multiselect from 'vue-multiselect';
 
 
 const props = defineProps({
-  record: Array
+  record: Array,
+  appointment: Array
 })
 
-const options = [
-    {"index" : 0 ,"name" : "Non livré"},
-    {"index" : 1 ,"name" : "Livré"},
-]
 const form = useForm({
-    selected: null
+    record_id: props.record.id,
+    date: props.appointment?.date
 });
 
-const statusSelect = (option) => {
-  return `${option.name}`
-}
-
 const submit = () => {
-    form.put(route('records.update', props.record.id));
+    form.put(route('appointments.update', props.appointment.id));
 };
 
 </script>
 <template>
-    <Head title="Enregistrement à l'Etat-civil" />
+    <Head title="Rendez-vous" />
     <AuthenticatedLayout>
       <template #header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Modifier statut d'une demande à l'Etat-civil</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Rendez-vous Dossier n° {{ record.ref }}</h2>
       </template>
       <div class="py-12">
       <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
         <form class="p-4" @submit.prevent="submit">
           <div>
-            <InputLabel for="is_delivered" value="Statut" />
-            <multiselect id="is_delivered" v-model="form.selected" modelValue="form.selected" :custom-label="statusSelect" :options="options" placeholder="Choisissez"
-              label="name" track-by="name">
-            </multiselect>
-            <InputError class="mt-2" :message="form.errors.selected" />
+            <InputLabel for="date" value="Date prevue" />
+            <TextInput
+              id="date"
+              type="date"
+              class="mt-1 block w-full"
+              v-model="form.date"
+            />
+            <InputError class="mt-2" :message="form.errors.date" />
           </div>
 
           <div class="flex items-center justify-end mt-4">
