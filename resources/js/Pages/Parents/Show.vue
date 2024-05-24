@@ -6,7 +6,6 @@ import { Head, Link } from "@inertiajs/vue3";
 const props = defineProps({
     parent: Object,
     children: Array,
-    assets: Function
 });
 
 </script>

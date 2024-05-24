@@ -62,7 +62,6 @@ class ParentController extends Controller
 
     public function show(Parents $parent)
     {
-        $test = asset($parent->father_id);
         $children = Child::where('parents_id', $parent->id)->get();
         return Inertia::render("Parents/Show", compact("parent", "children"));
     }
