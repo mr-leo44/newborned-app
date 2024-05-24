@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Child;
 use App\Models\Parents;
 use Illuminate\Http\Request;
 use App\Http\Resources\ParentResource;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class ParentController extends Controller
 {
@@ -57,6 +58,13 @@ class ParentController extends Controller
         ]);
 
         return Redirect::route('parents.index')->with('success','Parents mis à jour avec succès');
+    }
+
+    public function show(Parents $parent)
+    {
+        $test = asset($parent->father_id);
+        $children = Child::where('parents_id', $parent->id)->get();
+        return Inertia::render("Parents/Show", compact("parent", "children"));
     }
 
     public function edit(Parents $parent)

@@ -64,8 +64,13 @@ defineProps({
                   <td class="py-4 px-6">{{ parent.mother_name }}</td>
                   <td class="py-4 px-6">
                     <Link
-                      :href="route('parents.edit', parent.id)"
+                      :href="route('parents.show', parent.id)"
                       class="font-medium text-blue-500 hover:text-blue-700 mr-2"
+                      >Voir plus</Link
+                    >
+                    <Link
+                      :href="route('parents.edit', parent.id)"
+                      class="font-medium text-emerald-500 hover:text-blue-700 mr-2"
                       >Edit</Link
                     >
                     <Link

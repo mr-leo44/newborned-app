@@ -89,7 +89,7 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel for="gender" value="Votre Sexe" />
 
-                <select id="gender" v-model="form.gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select id="gender" v-model="form.gender" class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option selected>Veuillez choisir</option>
                     <option value="F">Femme</option>
                     <option value="H">Homme</option>
