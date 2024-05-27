@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Child;
+use App\Models\Record;
 use App\Models\Parents;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class WelcomeController extends Controller
 {
-    function welcome() {
+    public function welcome() {
         return Inertia::render("Welcome");
     }
 
-    function submitRequest(Request $request) {
+    public function request() {
+        return Inertia::render("Frontend/FormRequest");
+    }
+    public function submitRequest(Request $request) {
         $request->validate([
             'father_name' => ['required','min:3'],
             'mother_name' => ['required','min:3'],
