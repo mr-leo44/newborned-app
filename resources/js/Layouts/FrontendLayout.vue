@@ -1,6 +1,6 @@
 <script setup>
-/* import Header from "@/Components/Frontend/Header.vue";
-import Footer from "@/Components/Frontend/Footer.vue"; */
+import Header from "@/Components/Frontend/utils/Header.vue";
+import Footer from "@/Components/Frontend/utils/Footer.vue";
 </script>
 
 <template>
