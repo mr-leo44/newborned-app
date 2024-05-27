@@ -4,6 +4,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import Hero from "@/Components/Frontend/Hero.vue";
 import Promote from "@/Components/Frontend/Promote.vue";
 import About from "@/Components/Frontend/About.vue";
+import Contact from "@/Components/Frontend/Contact.vue";
 
 
 
@@ -15,5 +16,6 @@ import About from "@/Components/Frontend/About.vue";
         <Hero />
         <Promote />
         <About />
+        <Contact />
     </FrontendLayout>
 </template>
