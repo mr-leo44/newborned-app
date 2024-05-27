@@ -6,7 +6,7 @@
       class="container mx-auto">
       <div class="flex flex-col items-center text-center">
         <h2 class="section-title">Contactez nous</h2>
-        <p class="subtitle text-justify md:text-center">
+        <p class="subtitle text-center">
             N'hésitez pas à nous contacter si vous avez besoin d'aide ou d'informations complémentaires sur les formalités d'inscription des enfants à l'état civil en RDC.
         </p>
       </div>
