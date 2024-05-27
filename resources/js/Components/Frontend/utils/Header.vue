@@ -4,7 +4,6 @@ import { ref, onMounted } from "vue";
 const scrollBg = ref(false);
 const navigations = [
     { name: "Accueil", href: "#home" },
-    { name: "Inscrire son enfant", href: "#request" },
     { name: "Contact", href: "#contact" },
 ];
 const setScrollBg = (value) => {
@@ -68,6 +67,14 @@ onMounted(() => {
                             class="block py-2 pr-4 pl-3 text-light-tail-500 rounded dark:text-dark-navy-100 hover:text-light-tail-100 dark:hover:text-white"
                             aria-current="page"
                             >{{ navigation.name }}</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            :href="route('formRequest')"
+                            class="block py-2 pr-4 pl-3 bg-light-tail-500 text-slate-600 rounded dark:text-dark-navy-100 hover:text-slate-700 dark:hover:text-white"
+                            aria-current="page"
+                            >Inscrire son enfant</a
                         >
                     </li>
                 </ul>
