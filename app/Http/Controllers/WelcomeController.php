@@ -18,7 +18,8 @@ class WelcomeController extends Controller
     }
 
     public function request() {
-        return Inertia::render("Frontend/FormRequest");
+        $parents = Parents::all();
+        return Inertia::render("Frontend/FormRequest", compact("parents"));
     }
     public function submitRequest(Request $request) {
         $request->validate([
@@ -37,7 +38,7 @@ class WelcomeController extends Controller
         $mother_id = "";
         $wedding_act = "";
         $child_hospital_act = "";
-        
+
         if($request->hasFile('father_id')) {
             $father_id = $request->file('father_id')->store('parents/ids');
         }

@@ -12,7 +12,7 @@ import Contact from "@/Components/Frontend/Contact.vue";
 
 <template>
     <FrontendLayout>
-        <Head title="Commune de Lemba | Accueil" />
+        <Head title="Accueil | Commune de Lemba" />
         <Hero />
         <Promote />
         <About />
