@@ -1,12 +1,12 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 
-const publicAsset = (asset) => window.location+'assets/'+asset 
+const publicAsset = (asset) => window.location+'assets/'+asset
 </script>
 <template>
     <section
     id="home"
-    
+
     class="
       lg:h-[90vh]
       flex
@@ -19,17 +19,7 @@ const publicAsset = (asset) => window.location+'assets/'+asset
     "
   >
     <div
-      class="container mx-auto h-full"
-      v-motion
-      :initial="{
-        opacity: 0,
-        y: 100,
-      }"
-      :visible="{
-        opacity: 1,
-        y: 0,
-      }"
-    >
+      class="container mx-auto h-full">
       <div class="flex flex-col md:flex-row items-center h-full pt-8">
         <div class="flex-1 flex flex-col items-center lg:items-start">
           <h1
@@ -70,7 +60,7 @@ const publicAsset = (asset) => window.location+'assets/'+asset
           >
             Inscrire son enfant
         </Link>
-          
+
         </div>
         <div class="flex flex-1 justify-end items-center h-full mt-8 md:mt-0">
           <img
@@ -81,6 +71,6 @@ const publicAsset = (asset) => window.location+'assets/'+asset
         </div>
       </div>
     </div>
-    
+
     </section>
 </template>

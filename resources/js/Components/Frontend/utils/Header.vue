@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 <template>
     <nav
-        class="border-gray-20"
+        class="border-gray-20 w-full fixed"
         :class="{
             'bg-light-primary dark:bg-dark-primary': scrollBg,
             'bg-white dark:bg-slate-800': !scrollBg,
