@@ -21,6 +21,7 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
+Route::get('/request', [WelcomeController::class, 'request'])->name('formRequest');
 Route::post('/submitRequest', [WelcomeController::class, 'submitRequest'])->name('submitRequest');
 
 Route::middleware(['auth', 'verified'])->group(function () {
