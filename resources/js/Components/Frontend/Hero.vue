@@ -25,6 +25,8 @@ const publicAsset = (asset) => window.location+'assets/'+asset
           <h1
             class="
               text-4xl
+              text-center
+              md:text-start
               leading-[44px]
               md:text-5xl md:leading-tight
                lg:leading-[1.2]
