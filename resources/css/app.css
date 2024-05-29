@@ -8,6 +8,12 @@
 html {
     scroll-behavior: smooth;
     }
+
+@layer components {
+    .stepFull {
+        @apply text-blue-600 dark:text-blue-500 !important;
+    }
+}
 @layer base {
     body {
         @apply font-body text-paragraph leading-6 bg-gray-200;
