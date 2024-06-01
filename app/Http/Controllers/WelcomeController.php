@@ -18,8 +18,7 @@ class WelcomeController extends Controller
     }
 
     public function request() {
-        $parents = Parents::all();
-        return Inertia::render("Frontend/FormRequest", compact("parents"));
+        return Inertia::render("Frontend/FormRequest");
     }
     public function submitRequest(Request $request) {
         $request->validate([
@@ -30,7 +29,7 @@ class WelcomeController extends Controller
             'wedding_act' => ['required', 'image','file'],
             'child_name' => ['required','min:5'],
             'child_birthday' => ['required', 'date'],
-            'child_birth_city' => ['required'],
+            'child_city' => ['required'],
             'child_hospital_act' => ['required', 'image', 'file'],
         ]);
 
@@ -39,34 +38,34 @@ class WelcomeController extends Controller
         $wedding_act = "";
         $child_hospital_act = "";
 
-        if($request->hasFile('father_id')) {
-            $father_id = $request->file('father_id')->store('parents/ids');
-        }
+        // if($request->hasFile('father_id')) {
+        //     $father_id = $request->file('father_id')->store('parents/ids');
+        // }
 
-        if($request->hasFile('mother_id')) {
-            $mother_id = $request->file('mother_id')->store('parents/ids');
-        }
+        // if($request->hasFile('mother_id')) {
+        //     $mother_id = $request->file('mother_id')->store('parents/ids');
+        // }
 
-        if($request->hasFile('wedding_act')) {
-            $wedding_act = $request->file('wedding_act')->store('parents/acts');
-        }
-
-        if($request->hasFile('child_hospital_act')) {
-            $child_hospital_act = $request->file('child_hospital_act')->store('childs');
-        }
+        
+        // if($request->hasFile('wedding_act')) {
+        //     $wedding_act = $request->file('wedding_act')->store('parents/acts');
+        // }
 
         $parents = Parents::create([
             'father_name' => $request->father_name,
             'mother_name' => $request->mother_name,
-            'father_id' => $father_id,
-            'mother_id' => $mother_id,
-            'wedding_act' => $wedding_act,
+            'wedding_act' => $request->file('wedding_act')->store('parents/acts'),
+            'father_id' => $request->file('father_id')->store('parents/ids'),
+            'mother_id' => $request->file('mother_id')->store('parents/ids'),
         ]);
+        if($request->hasFile('child_hospital_act')) {
+            $child_hospital_act = $request->file('child_hospital_act')->store('childs');
+        }
 
         $child = Child::create([
-            'name' => request('name'),
-            'birthday' => request('birthday'),
-            'city' => request('city'),
+            'name' => request('child_name'),
+            'birthday' => request('child_birthday'),
+            'city' => request('child_city'),
             'hospital_act' => $child_hospital_act,
             'parents_id' => $parents->id,
         ]);
@@ -83,7 +82,7 @@ class WelcomeController extends Controller
             'record_id' => $record->id
         ]);
 
-        return Redirect::route('/')->with('success','Votre demande a été un succès');
+        return Redirect::route('welcome')->with('success','Votre demande a été un succès');
 
     }
 }
