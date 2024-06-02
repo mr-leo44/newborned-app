@@ -27,8 +27,11 @@ class ParentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'family_name' => ['unique:'.Parents::class],
             'father_name' => ['required','min:3'],
             'mother_name' => ['required','min:3'],
+            'parents_phone' => ['required','min:10'],
+            'parents_email' => ['required','email'],
             'father_id' => ['required', 'image','file'],
             'mother_id' => ['required', 'image','file'],
         ]);
@@ -52,8 +55,11 @@ class ParentController extends Controller
         }
 
         Parents::create([
+            'family_name' => $request->family_name,
             'father_name' => $request->father_name,
             'mother_name' => $request->mother_name,
+            'parents_email' => $request->parents_email,
+            'parents_phone' => $request->parents_phone,
             'father_id' => $father_id,
             'mother_id' => $mother_id,
             'wedding_act' => $wedding_act ?? null,
@@ -80,8 +86,11 @@ class ParentController extends Controller
         $wedding_act = $parent->wedding_act;
 
         $request->validate([
+            'family_name' => ['unique:'.Parents::class],
             'father_name' => ['min:3'],
             'mother_name' => ['min:3'],
+            'parents_email' => ['email'],
+            'parents_phone' => ['min:10'],
         ]);
 
         
@@ -104,8 +113,11 @@ class ParentController extends Controller
         }
 
         $parent->update([
+            'family_name' => $request->family_name,
             'father_name' => $request->father_name,
             'mother_name' => $request->mother_name,
+            'parents_email' => $request->parents_email,
+            'parents_phone' => $request->parents_phone,
             'father_id' => $father_id,
             'mother_id' => $mother_id,
             'wedding_act' => $wedding_act,

@@ -59,8 +59,9 @@ defineProps({
                   dark:bg-gray-700 dark:text-gray-400
                 ">
               <tr>
-                <th scope="col" class="py-3 px-6">Nom Père</th>
-                <th scope="col" class="py-3 px-6">Nom Mère</th>
+                <th scope="col" class="py-3 px-6">Nom Couple</th>
+                <th scope="col" class="py-3 px-6">Email</th>
+                <th scope="col" class="py-3 px-6">Telephone</th>
                 <th scope="col" class="py-3 px-6"></th>
               </tr>
             </thead>
@@ -71,9 +72,10 @@ defineProps({
                       py-4
                       px-6
                     ">
-                  {{ parent.father_name }}
+                  {{ parent.family_name }}
                 </td>
-                <td class="py-4 px-6">{{ parent.mother_name }}</td>
+                <td class="py-4 px-6">{{ parent.parents_email }}</td>
+                <td class="py-4 px-6">{{ parent.parents_phone }}</td>
                 <td class="py-4 px-6">
                   <Link :href="route('parents.show', parent.id)"
                     class="font-medium text-blue-500 hover:text-blue-700 mr-2">

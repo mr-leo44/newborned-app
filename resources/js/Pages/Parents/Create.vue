@@ -7,14 +7,18 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 
 const form = useForm({
+  family_name: "",
   father_name: "",
   mother_name: "",
+  parents_phone: "",
+  parents_email: "",
   father_id: null,
   mother_id: null,
   wedding_act: null,
 });
 
 const submit = () => {
+  form.family_name = form.father_name+ ' & '+ form.mother_name
   form.post(route("parents.store"));
 };
 </script>
@@ -46,6 +50,26 @@ const submit = () => {
               v-model="form.mother_name"
             />
             <InputError class="mt-2" :message="form.errors.mother_name" />
+          </div>
+          <div class="mt-2">
+            <InputLabel for="parents_phone" value="Téléphone couple" />
+            <TextInput
+              id="parents_phone"
+              type="text"
+              class="mt-1 block w-full"
+              v-model="form.parents_phone"
+            />
+            <InputError class="mt-2" :message="form.errors.parents_phone" />
+          </div>
+          <div class="mt-2">
+            <InputLabel for="parents_email" value="E-Mail couple" />
+            <TextInput
+              id="parents_email"
+              type="email"
+              class="mt-1 block w-full"
+              v-model="form.parents_email"
+            />
+            <InputError class="mt-2" :message="form.errors.parents_email" />
           </div>
           <div class="mt-2">
             <InputLabel for="father_id" value="Identité du père" />

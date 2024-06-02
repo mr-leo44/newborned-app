@@ -27,7 +27,7 @@ class ChildController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required','min:5'],
+            'name' => ['required','min:5', 'unique:'.Child::class],
             'birthday' => ['required', 'date'],
             'city' => ['required'],
             'hospital_act' => ['required', 'image', 'file'],
@@ -58,7 +58,7 @@ class ChildController extends Controller
     {
         $hospital_act = $child->hospital_act;
         $request->validate([
-            'name' => ['min:5'],
+            'name' => ['min:5', 'unique:'.Child::class],
             'birthday' => ['date'],
             'city' => ['min:2'],
             'hospital_act' => ['image','file'],

@@ -22,8 +22,11 @@ class WelcomeController extends Controller
     }
     public function submitRequest(Request $request) {
         $request->validate([
+            'family_name' => ['unique:'.Parents::class],
             'father_name' => ['required','min:3'],
             'mother_name' => ['required','min:3'],
+            'parents_phone' => ['required','min:10'],
+            'parents_email' => ['required','email'],
             'father_id' => ['required', 'image','file'],
             'mother_id' => ['required', 'image','file'],
             'wedding_act' => ['required', 'image','file'],
@@ -33,40 +36,22 @@ class WelcomeController extends Controller
             'child_hospital_act' => ['required', 'image', 'file'],
         ]);
 
-        $father_id = "";
-        $mother_id = "";
-        $wedding_act = "";
-        $child_hospital_act = "";
-
-        // if($request->hasFile('father_id')) {
-        //     $father_id = $request->file('father_id')->store('parents/ids');
-        // }
-
-        // if($request->hasFile('mother_id')) {
-        //     $mother_id = $request->file('mother_id')->store('parents/ids');
-        // }
-
-        
-        // if($request->hasFile('wedding_act')) {
-        //     $wedding_act = $request->file('wedding_act')->store('parents/acts');
-        // }
-
         $parents = Parents::create([
+            'family_name' => $request->family_name,
             'father_name' => $request->father_name,
             'mother_name' => $request->mother_name,
+            'parents_email' => $request->parents_email,
+            'parents_phone' => $request->parents_phone,
             'wedding_act' => $request->file('wedding_act')->store('parents/acts'),
             'father_id' => $request->file('father_id')->store('parents/ids'),
             'mother_id' => $request->file('mother_id')->store('parents/ids'),
         ]);
-        if($request->hasFile('child_hospital_act')) {
-            $child_hospital_act = $request->file('child_hospital_act')->store('childs');
-        }
 
         $child = Child::create([
             'name' => request('child_name'),
             'birthday' => request('child_birthday'),
             'city' => request('child_city'),
-            'hospital_act' => $child_hospital_act,
+            'hospital_act' => $request->file('child_hospital_act')->store('childs'),
             'parents_id' => $parents->id,
         ]);
 

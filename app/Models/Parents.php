@@ -12,8 +12,11 @@ class Parents extends Model
     use HasFactory;
 
     protected $fillable = [
+        'family_name',
         'father_name',
         'mother_name',
+        'parents_email',
+        'parents_phone',
         'father_id',
         'mother_id',
         'wedding_act'

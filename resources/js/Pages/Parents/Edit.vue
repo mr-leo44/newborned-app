@@ -10,8 +10,11 @@ const props = defineProps({
     parent: Object
 })
 const form = useForm({
+  family_name: props.parent.family_name,
   father_name: props.parent.father_name,
   mother_name: props.parent.mother_name,
+  parents_phone: props.parent.parents_phone,
+  parents_email: props.parent.parents_email,
   father_id: null,
   mother_id: null,
   wedding_act: null,
@@ -19,6 +22,7 @@ const form = useForm({
 });
 
 const submit = () => {
+  form.family_name = form.father_name+ ' & '+ form.mother_name
     form.post(route('parents.update',props.parent.id));
 };
 </script>
@@ -51,6 +55,26 @@ const submit = () => {
               
             />
             <InputError class="mt-2" :message="form.errors.mother_name" />
+          </div>
+          <div class="mt-2">
+            <InputLabel for="parents_phone" value="Téléphone couple" />
+            <TextInput
+              id="parents_phone"
+              type="text"
+              class="mt-1 block w-full"
+              v-model="form.parents_phone"
+            />
+            <InputError class="mt-2" :message="form.errors.parents_phone" />
+          </div>
+          <div class="mt-2">
+            <InputLabel for="parents_email" value="E-Mail couple" />
+            <TextInput
+              id="parents_email"
+              type="email"
+              class="mt-1 block w-full"
+              v-model="form.parents_email"
+            />
+            <InputError class="mt-2" :message="form.errors.parents_email" />
           </div>
           <div class="mt-2">
             <InputLabel for="father_id" value="Identité du Père" />
