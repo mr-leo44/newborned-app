@@ -8,7 +8,7 @@
       >
         <div class="flex space-x-6 items-center justify-center">
           <div
-            class="text-light-tail-500 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
+            class="text-slate-800 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
           >
             <a href="">
               <svg
@@ -28,7 +28,7 @@
             </a>
           </div>
           <div
-            class="text-light-tail-500 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
+            class="text-slate-800 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
           >
             <a href="">
               <svg
@@ -50,7 +50,7 @@
             </a>
           </div>
           <div
-            class="text-light-tail-500 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
+            class="text-slate-800 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
           >
             <a href="">
               <svg
@@ -73,7 +73,7 @@
             </a>
           </div>
           <div
-            class="text-light-tail-500 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
+            class="text-slate-800 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
           >
             <a href="">
               <svg
@@ -95,7 +95,7 @@
             </a>
           </div>
           <div
-            class="text-light-tail-500 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
+            class="text-slate-800 rounded-sm w-14 h-14 flex items-center md:items-start justify-center mt-2 mb-4 lg:mb-0 text-2xl"
           >
             <a href="">
               <svg

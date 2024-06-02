@@ -21,7 +21,9 @@ const props = defineProps({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                
+                <div class="my-6 text-dark-primary font-semibold text-xl">
+                Enfants
+                </div>
                 <div class="overflow-x-auto relative">
                     <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                         <thead class="
