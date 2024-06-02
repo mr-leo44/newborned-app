@@ -51,7 +51,7 @@ const publicAsset = (asset) => window.location+'assets/'+asset
               btn btn-md
               bg-slate-600
               text-white
-              hover:bg-indigo-600 hover:text-gray-100
+              hover:bg-gray-800 hover:text-gray-100
               dark:hover:bg-dark-secondary dark:hover:text-dark-navy-100
               md:btn-lg
               transition-all

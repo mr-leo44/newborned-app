@@ -37,7 +37,7 @@ onMounted(() => {
                     <li>
                         <a
                             :href="route('formRequest')"
-                            class="block text-md text-center py-2 pr-4 pl-3 bg-light-tail-500 text-white rounded dark:text-dark-navy-100 dark:hover:text-white"
+                            class="block text-md text-center py-2 pr-4 pl-3 bg-slate-600 hover:bg-gray-800 text-white rounded dark:text-dark-navy-100 dark:hover:text-white"
                             >Inscrire <span class="hidden md:inline-block"> son enfant</span></a
                         >
                     </li>

@@ -28,13 +28,11 @@ const submit = () => {
 
     <Head title=" Inscrire un enfant | Commune de Lemba" />
 
-    <h5 class="mb-2 text-lg text-center tracking-tight text-gray-900 pt-48 md:pt-24 dark:text-white">Vérifiez bien avant
+    <h5 class="mb-2 text-lg text-center tracking-tight text-gray-900 pt-36 md:pt-24 dark:text-white">Vérifiez bien avant
       de confirmer</h5>
     <div class="rounded sm:max-w-full px-4 md:max-w-2xl mx-auto">
       <div>
-
-        {{ $page.props.errors }}
-        <form class="py-6 w-full flex justify-between" @submit.prevent="submit">
+        <form class="py-6 w-full inline-flex flex-col md:flex md:flex-row md:justify-between" @submit.prevent="submit">
           <div>
             <div>
               <InputLabel for="father_name" value="Nom du Père" />
@@ -66,7 +64,7 @@ const submit = () => {
             </div>
           </div>
           <div>
-            <div>
+            <div class="mt-6 md:mt-0">
               <InputLabel for="child_name" value="Nom de l'enfant" />
               <TextInput id="child_name" type="text" class="mt-1 block w-full" v-model="form.child_name" />
               <InputError class="mt-2" :message="form.errors.child_name" />
