@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_delivered')->default(false);
-            $table->foreignIdFor(Child::class);
+            $table->foreignIdFor(Child::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('birthday');
             $table->string('city');
             $table->string('hospital_act');
-            $table->foreignIdFor(Parents::class);
+            $table->foreignIdFor(Parents::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
