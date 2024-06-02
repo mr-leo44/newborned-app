@@ -45,8 +45,8 @@ defineProps({
               class="
                 px-4
                 py-2
-                bg-indigo-500
-                hover:bg-indigo-700
+                bg-slate-700
+                hover:bg-slate-500
                 text-white
                 rounded-md
               "
