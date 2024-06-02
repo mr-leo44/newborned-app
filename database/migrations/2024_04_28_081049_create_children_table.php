@@ -14,9 +14,7 @@ return new class extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('middlename');
-            $table->string('lastname');
+            $table->string('name')->unique();
             $table->string('birthday');
             $table->string('city');
             $table->string('hospital_act');
