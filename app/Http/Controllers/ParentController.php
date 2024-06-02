@@ -31,7 +31,6 @@ class ParentController extends Controller
             'mother_name' => ['required','min:3'],
             'father_id' => ['required', 'image','file'],
             'mother_id' => ['required', 'image','file'],
-            'wedding_act' => ['image','file'],
         ]);
         $father_id = "";
         $mother_id = "";
@@ -46,6 +45,9 @@ class ParentController extends Controller
         }
 
         if($request->hasFile('wedding_act')) {
+            $request->validate([
+                'wedding_act' => ['image','file'],
+            ]);
             $wedding_act = $request->file('wedding_act')->store('parents/acts');
         }
 

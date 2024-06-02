@@ -24,10 +24,8 @@ const submit = () => {
 
 </script>
 <template>
+  <Head title=" Inscrire un enfant | Commune de Lemba" />
   <FrontendLayout>
-
-    <Head title=" Inscrire un enfant | Commune de Lemba" />
-
     <h5 class="mb-2 text-lg text-center tracking-tight text-gray-900 pt-36 md:pt-24 dark:text-white">Vérifiez bien avant
       de confirmer</h5>
     <div class="rounded sm:max-w-full px-4 md:max-w-2xl mx-auto">

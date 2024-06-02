@@ -82,7 +82,7 @@ class WelcomeController extends Controller
             'record_id' => $record->id
         ]);
 
-        return Redirect::route('welcome')->with('success','Votre demande a été un succès');
+        return Redirect::route('welcome')->with('success','Votre demande a été un succès. Vous serez contacté endéans une semainen');
 
     }
 }
