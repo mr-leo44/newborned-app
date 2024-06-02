@@ -25,7 +25,7 @@ defineProps({
       <div class="max-w-7xl mx-auto justify-center sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-3 grid-rows-1 gap-2 md:gap-3 my-6">
           <div
-            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="md:max-w-sm mx-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <h5 class="mb-2 text-lg lg:text-xl font-medium tracking-tight text-gray-900 dark:text-white">
               {{ undelivered_records }} Enregistrement<span v-if="undelivered_records > 1">s</span>
               à traiter
@@ -41,7 +41,7 @@ defineProps({
             </Link>
           </div>
           <div
-            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="md:max-w-sm mx-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <h5 class="mb-2 text-lg lg:text-xl font-medium tracking-tight text-gray-900 dark:text-white">
               {{ parents_count }} Couple<span v-if="parents_count > 1">s</span>
               enregistré<span v-if="parents_count > 1">s</span>
@@ -57,7 +57,7 @@ defineProps({
             </Link>
           </div>
           <div
-            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="md:max-w-sm mx-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <h5 class="mb-2 text-lg lg:text-xl font-medium tracking-tight text-gray-900 dark:text-white">
               {{ childs_count }} Enfant<span v-if="childs_count > 1">s</span>
               inscrit<span v-if="childs_count > 1">s</span>
