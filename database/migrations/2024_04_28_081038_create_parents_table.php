@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('mother_name');
             $table->string('father_id');
             $table->string('mother_id');
-            $table->string('wedding_act');
+            $table->string('wedding_act')->nullable();
             $table->timestamps();
         });
     }

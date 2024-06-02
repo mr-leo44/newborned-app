@@ -31,7 +31,7 @@ class ParentController extends Controller
             'mother_name' => ['required','min:3'],
             'father_id' => ['required', 'image','file'],
             'mother_id' => ['required', 'image','file'],
-            'wedding_act' => ['required', 'image','file'],
+            'wedding_act' => ['image','file'],
         ]);
         $father_id = "";
         $mother_id = "";
@@ -54,10 +54,10 @@ class ParentController extends Controller
             'mother_name' => $request->mother_name,
             'father_id' => $father_id,
             'mother_id' => $mother_id,
-            'wedding_act' => $wedding_act,
+            'wedding_act' => $wedding_act ?? null,
         ]);
 
-        return Redirect::route('parents.index')->with('success','Parents mis à jour avec succès');
+        return Redirect::route('parents.index')->with('success','Parents créés avec succès');
     }
 
     public function show(Parents $parent)
@@ -109,7 +109,7 @@ class ParentController extends Controller
             'wedding_act' => $wedding_act,
         ]);
 
-        return Redirect::route('parents.index')->with('success','Parents créés avec succès');
+        return Redirect::route('parents.index')->with('success','Parents mis à jour avec succès');
     }
 
     
