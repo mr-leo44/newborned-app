@@ -4,6 +4,7 @@ defineProps({
     caption: String
 })
 
+
 const modalEl = document.getElementById('info-popup');
 const privacyModal = new Modal(modalEl, {
     placement: 'center'

@@ -12,9 +12,11 @@ import Popup from "@/Components/Popup.vue";
 </script>
 
 <template>
+    <Head title="Accueil | Commune de Lemba" />
     <FrontendLayout>
-        <Popup v-if="$page.props.flash.success" :caption="$page.props.flash.success" />
-        <Head title="Accueil | Commune de Lemba" />
+        <div v-if="$page.props.flash.success">
+            <Popup :caption="$page.props.flash.success" />
+        </div>
         <Hero />
         <Promote />
         <About />
