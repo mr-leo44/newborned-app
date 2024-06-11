@@ -5,10 +5,10 @@ import colors from 'tailwindcss/colors';
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
+        "./node_modules/flowbite/**/*.js",
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
-        "./node_modules/flowbite/**/*.js",
     ],
 
     theme: {

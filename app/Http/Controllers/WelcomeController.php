@@ -67,7 +67,11 @@ class WelcomeController extends Controller
             'record_id' => $record->id
         ]);
 
-        return Redirect::route('welcome')->with('success','Votre demande a été un succès. Vous serez contacté endéans une semaine');
+        return Redirect::route('success')->with('success','Votre demande a été un succès. Vous serez contacté endéans une semaine après traitement de dossier');
 
+    }
+
+    public function success() {
+        return Inertia::render('Success');
     }
 }
